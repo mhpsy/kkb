@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 使用var 再定义a之前log打印，那么输出的是undefined不会报错的
+    // 声明前置
+    // console.log(a);
+    // var  a =10 ;
+    // console.log(a);
+    // let的出现就是为了解决这个问题
+
+    // const一旦声明就不允许更改了。
+    // 但是对面里面的属性还是可以更改的
+
+    // 解构赋值
+    let obj = {
+        name: 'zhang',
+        age: 20
+    }
+    let { name, age } = obj;
+    console.log(name);
+    console.log(age);
+    console.log('-----------');
+    // 可以打印出来zhang和20 也就是分别赋值了
+
+    // 展开运算符
+    let newObj = { heifht: '178cm', ...obj };
+    console.log(newObj);
+    // 打印结果为   {heifht: '178cm', name: 'zhang', age: 20}
+
+    // 不定参数
+    function test() {
+        console.log(arguments);
+    }
+    test('q', 'w', 'e')
+    // arguments 就是ES5的时候的不定参数 arguments是一个伪数组
+
+    // 这是一个一般形式的对象
+    let object = {
+        name: 'zhang',
+        age: 20,
+        sex: 1
+    }
+
+    let world = 'name'
+    let worldObj = {
+        // 实际就是取出world里面的值
+        [world]: 'zhang',
+        age: 20,
+        sex: 1
+    }
+    console.log(object)
+    console.log(worldObj)
+    console.log(object == worldObj);
+    // 虽然打印出来的结果是相同的，但是==比较是false
+
+
+    // map
+    let map = new Map();
+    map.set({}, 'world');
+    console.log(map);
+
+    // set
+    let set = new Set([1, 2, 1, 2, 3, 4]);
+    console.log(set);
+
+    // Symbol 相当于一个唯一标识符
+    let s1 = Symbol("key");
+    let s2 = Symbol("key");
+    console.log(s1 == s2);
+    // false
+    console.log(s1);
+    console.log(s2);
+    // Symbol的实际作用，创建一些不想被访问到的值
+    let user = {
+        id: 001,
+        [Symbol('width')]: '100kg',
+        [Symbol('name')]: 'zhang',
+        [Symbol('age')]: '20',
+        [Symbol('sex')]: '1',
+    }
+    console.log(user);
+    // 事实上这并不是绝对的私有属性 只是有点私有属性的意思，如果要访问的话也是可以访问的
+    // Object.getOwnPropertySymbols可以获取对象中全部的Symbol属性
+    const allSymbols = Object.getOwnPropertySymbols(user)
+    console.log(allSymbols);
+
+    const width = user[allSymbols[0]];
+
+    for (let index = 0; index < allSymbols.length; index++) {
+        // 获取user中全部的Symbol属性
+        console.log(user[allSymbols[index]]);
+    }
+    console.log('-------------------------------');
+
+
+    // symbol的其他用处
+    // 比如不需要知道值是什么
+    /* 
+    let cate = {
+         animal:'animal',
+         person:'person',
+     };
+     function getCate(type){
+         if(type==cate.person){
+             console.log('人类');
+         }else if(type==cate.animal){
+             console.log('动物');
+         }
+     }
+     getCate(cate.animal)
+     getCate(cate.person)
+     */
+    // 这个时候可以发现其实cate里面的值是什么都没关系的
+    // 唯一的意义就在于他不能重复
+    // 这总情况下就使用Symbol就好了 最好的解决方案
+    // 一般项目中使用的都很少，但是一些源码中会见到一些
+    let cate = {
+        //  animal:'1',
+        animal: Symbol('animal'),
+        //  person:'2',
+        person: Symbol('person'),
+    };
+    function getCate(type) {
+        if (type == cate.person) {
+            console.log('人类');
+        } else if (type == cate.animal) {
+            console.log('动物');
+        }
+    }
+    getCate(cate.animal)
+    getCate(cate.person)
+
+
+    //  箭头语法
+    let f1 = function (v) {
+        return v
+    }
+
+    let f2 = v => V
+
+    let f3 = () =>{return {name:'f3'}}
+    console.log(f3());
+
+
+    let f4 = () =>({name:'f4'})
+    console.log(f4());
+
+
+/* 
+- 新增数组扩展
+  - Array.from()、Array.of()
+  - find()、findIndex()、includes()
+  - flat()、flatMap()
+  - 手册地址：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
+  
+- 新增字符串扩展
+  - includes(), startsWith(), endsWith()
+  - repeat()
+  - 模版字符串
+  - 手册地址：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String
+  */
+
+</script>
+
+
+
+</html>
