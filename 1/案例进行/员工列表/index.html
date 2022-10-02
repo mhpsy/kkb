@@ -85,42 +85,165 @@
 </head>
 
 <body>
-    <div class="wrap">
-        <div class="ctrl">
-            <div class="age_sort nu">
-                <a href="javascript:;">年龄从小到大</a>
-                <a href="javascript:;">年龄从大到小</a>
-                <a href="javascript:;" class="active">默认排序</a>
-            </div>
-            <div class="gender_show">
-                <a href="javascript:;">只显示男性</a>
-                <a href="javascript:;">只显示女性</a>
-                <a href="javascript:;" class="active">默认</a>
-            </div>
+<div class="wrap">
+    <div class="ctrl">
+        <div class="age_sort nu">
+            <a href="javascript:;">年龄从小到大</a>
+            <a href="javascript:;">年龄从大到小</a>
+            <a href="javascript:;" class="active">默认排序</a>
         </div>
-        <table id="table">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>姓名</th>
-                    <th>年龄</th>
-                    <th>性别</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>0</th>
-                    <th>小明</th>
-                    <th>24</th>
-                    <th>男</th>
-                </tr>
-            </tbody>
-        </table>
+        <div class="gender_show">
+            <a href="javascript:;">只显示男性</a>
+            <a href="javascript:;">只显示女性</a>
+            <a href="javascript:;" class="active">默认</a>
+        </div>
     </div>
-    <script>
-        
+    <table id="table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
 
-    </script>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+
+    let data = [
+        {
+            id: 1,
+            name: '小表',
+            age: 12,
+            gender: '男'
+        },
+        {
+            id: 2,
+            name: '小米',
+            age: 15,
+            gender: '男'
+        },
+        {
+            id: 3,
+            name: '大米',
+            age: 10,
+            gender: '女'
+        },
+        {
+            id: 4,
+            name: '小灯',
+            age: 19,
+            gender: '男'
+        },
+        {
+            id: 5,
+            name: '小宏',
+            age: 8,
+            gender: '女'
+        }
+    ]
+
+    //全局变量
+    let ageSortIndex = 2;
+    let sexIndex = 2;
+
+    function render(data) {
+        // 获取tbody元素
+        let tbody = document.querySelector("tbody");
+        // 清空
+        tbody.innerHTML = '';
+        // 循环出来data里面的数据
+        data.forEach(item => {
+            let tr = document.createElement("tr");
+            tr.innerHTML = `<th>${item.id}</th><th>${item.name}</th><th>${item.age}</th><th>${item.gender}</th>`;
+            //tbody添加元素
+            tbody.appendChild(tr);
+        })
+    }
+
+    //渲染数据到页面上面
+    render(data)
+
+    // 年龄排序 ——》排列顺序——》渲染试图
+    let f1 = function (data) {
+        return data.sort((r1, r2) => {
+            //由小变大
+            return r1.age - r2.age
+        })
+    }
+    let f2 = function (data) {
+        return data.sort((r1, r2) => {
+            //由大变小
+            return r2.age - r1.age
+        })
+    }
+
+    // 年龄排序
+    let f11 = data => data.sort((r1, r2) => r1.age - r2.age)
+    let f22 = data => data.sort((r1, r2) => r2.age - r1.age)
+
+    // 年龄排序全部存在数组里面
+    // 利用map直接返回相同的一份数据相当于复制出来了一份
+    // 解决方式有很多种
+    let ageSortArr = [
+        // data => data.sort((r1, r2) => r1.age - r2.age),
+        data => data.map(item => item).sort((r1, r2) => r1.age - r2.age),
+        // data => data.sort((r1, r2) => r2.age - r1.age),
+        data => data.map(item => item).sort((r1, r2) => r2.age - r1.age),
+        data => data
+    ];
+    // console.log(f2(data))
+
+
+    //性别筛选规则
+    let sexFilterArr = [
+        //filter不会跟sort一样影响原来的数据
+        data => data.filter(item => item.gender === '男'),
+        data => data.filter(item => item.gender === '女'),
+        data => data
+    ]
+
+    //获取点击标签
+    let ageEl = document.querySelectorAll(".age_sort a");
+    // console.log(ageEl)
+    ageEl.forEach((item, index) => {
+        item.onclick = function () {
+            ageEl.forEach(ele => {
+                //删除全部的active
+                ele.classList.remove("active")
+            })
+            //改变排序的全局变量
+            ageSortIndex = index;
+            item.classList.add("active")
+            //ageSortArr是一个存放函数的数组，然后index是对应的下标
+            let newDate = ageSortArr[index](data);
+            //处理两份数据，年龄和性别
+            let res = sexFilterArr[sexIndex](newDate);
+            //   重新渲染数据
+            render(res)
+        }
+    })
+
+    let sexEl = document.querySelectorAll(".gender_show a");
+    sexEl.forEach((item, index) => {
+        item.onclick = function () {
+            sexEl.forEach(ele => {
+                ele.classList.remove("active")
+            })
+            sexIndex = index;
+            item.classList.add("active")
+            let newDate = sexFilterArr[index](data);
+            let res = ageSortArr[ageSortIndex](newDate);
+            render(res)
+        }
+    })
+</script>
 </body>
 
 </html>

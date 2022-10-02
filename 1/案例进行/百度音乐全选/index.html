@@ -2,37 +2,158 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Document</title>
-  <link rel="stylesheet" href="./index.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css"/>
 </head>
 
 <body>
-  <section id="wrap">
+<section id="wrap">
     <h2 class="title">百度音乐榜单</h2>
     <ul id="list">
-      <li>
-        <input type="checkbox" class="check" />
-        <span>第一条信息</span>
-        <a href="javascript:;" class="collect">收藏</a>
-        <a href="javascript:;" class="cancelCollect">取消收藏</a>
-        <a href="javascript:;" class="remove">删除</a>
-      </li>
+        <li>
+            <input type="checkbox" class="check"/>
+            <span>第一条信息</span>
+            <a href="javascript:;" class="collect">收藏</a>
+            <a href="javascript:;" class="cancelCollect">取消收藏</a>
+            <a href="javascript:;" class="remove">删除</a>
+        </li>
     </ul>
     <footer class="footer">
-      <label><input type="checkbox" id="checkAll" />全选/全不选</label>
-      <a href="javascript:;" id="remove">删除</a>
-      <input type="text" id="newInfo" />
-      <a href="javascript:;" id="add">添加</a>
+        <label><input type="checkbox" id="checkAll"/>全选/全不选</label>
+        <a href="javascript:;" id="remove">删除选中</a>
+        <input type="text" id="newInfo"/>
+        <a href="javascript:;" id="add">添加</a>
     </footer>
-  </section>
-  <script>
-    
+</section>
+<script>
+    let data = [
+        {
+            id: 1,
+            title: "腐败",
+            checked: false,
+            collect: true
+        },
+        {
+            id: 2,
+            title: "大海",
+            checked: true,
+            collect: false
+        },
+        {
+            id: 3,
+            title: "几个你",
+            checked: false,
+            collect: true
+        },
+        {
+            id: 4,
+            title: "寂寞沙洲冷",
+            checked: false,
+            collect: true
+        }
+    ];
 
 
-  </script>
+    //是否全选
+    // const isCheckAll=function (data){
+    //     return data.every(item=>item.checked)
+    // }
+    const isCheckAll = data => data.every(item => item.checked);
+
+    //渲染数据
+    function render(data) {
+        let list = document.querySelector("#list")
+        list.innerHTML = "";
+        data.forEach(item => {
+            let li = document.createElement("li");
+            //如果显示是否选中和是否收藏
+            li.innerHTML = `<input type="checkbox" ${item.checked ? 'checked' : ''} class="check" />
+        <span>${item.title}</span>
+        ${item.collect ?
+                "<a href=\"javascript:;\" class=\"cancelCollect\">取消收藏</a>" :
+                "<a href=\"javascript:;\" class=\"collect\">收藏</a>"}
+        <a href="javascript:;" class="remove">删除</a>`
+            list.appendChild(li);
+        })
+        //每次进入渲染方法的时候判断全选
+        document.querySelector("#checkAll").checked = isCheckAll(data);
+        //添加事件
+        listAddEven();
+
+    }
+
+    render(data)
+
+    //全选
+    document.querySelector('#checkAll').onclick = function () {
+        data.forEach(item => {
+            item.checked = this.checked
+            //    此处的this.checked就是全选的
+        })
+        render(data)
+    }
+
+    //删除选中
+    document.querySelector('#remove').onclick = function () {
+        //过滤出来data中没有选中的那些 赋值给data 然后渲染
+        data = data.filter(item => !item.checked);
+        render(data);
+    }
+
+    //添加音乐
+    document.querySelector('#add').onclick=function (){
+        //获取输入框的value
+        let title = document.querySelector('#newInfo').value;
+        let obj = {
+            id:data[data.length-1]+1,
+            title,
+            checked:false,
+            collect:false,
+        }
+        data.push(obj)
+        render(data)
+    }
+
+
+    //此处有一个问题动态生成的节点只有在第一次使用的时候事件才会生效，第二次和以后都不会生效了
+    // 简单的解决办法就是讲这些放在一个方法里面去，每次渲染都生成一次就好了
+    function listAddEven() {
+        let listEven = document.querySelectorAll("#list li")
+        listEven.forEach((li, index) => {
+            //给各个功能绑定点击事件
+            li.onclick = function (e) {
+                console.log(data)
+                switch (e.target.className) {
+                    case 'check':
+                        // console.log(e.target.checked)
+                        // data[index].checked=!data[index].checked
+                        data[index].checked = e.target.checked
+                        // console.log('check');
+                        break;
+                    case 'collect':
+                        data[index].collect = true;
+                        // console.log('collect');
+                        break;
+                    case 'cancelCollect':
+                        data[index].collect = false;
+                        // console.log('cancelCollect');
+                        break;
+                    case 'remove':
+                        data.splice(index, 1)
+                        // console.log('remove');
+                        break;
+                }
+                console.log(data)
+                render(data)
+            }
+        })
+    }
+
+
+</script>
 </body>
 
 </html>

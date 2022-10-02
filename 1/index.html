@@ -18,7 +18,7 @@
     // var  a =10 ;
     // console.log(a);
     // let的出现就是为了解决这个问题
-
+    //
     // const一旦声明就不允许更改了。
     // 但是对面里面的属性还是可以更改的
 
@@ -83,7 +83,7 @@
     console.log(s2);
     // Symbol的实际作用，创建一些不想被访问到的值
     let user = {
-        id: 001,
+        id: '001',
         [Symbol('width')]: '100kg',
         [Symbol('name')]: 'zhang',
         [Symbol('age')]: '20',
@@ -106,7 +106,7 @@
 
     // symbol的其他用处
     // 比如不需要知道值是什么
-    /* 
+    /*
     let cate = {
          animal:'animal',
          person:'person',
@@ -157,13 +157,13 @@
     console.log(f4());
 
 
-/* 
+/*
 - 新增数组扩展
   - Array.from()、Array.of()
   - find()、findIndex()、includes()
   - flat()、flatMap()
   - 手册地址：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
-  
+
 - 新增字符串扩展
   - includes(), startsWith(), endsWith()
   - repeat()
