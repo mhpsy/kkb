@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // function Person(){
+    //   this.name="张三"
+    // }
+    // //ES5中的构造函数
+    // Person.prototype.fn=function (){
+    //   console.log('fnRun')
+    // }
+
+    // class Person {
+    //     constructor(name) {
+    //         this.name = name
+    //     }
+    //     //ES6中的类
+    //     fn() {
+    //         console.log('fn')
+    //     }
+    // }
+    //
+    // let man = new Person('zhang')
+    // console.log(man)
+    // man.fn()
+
+    //公有私有
+    class Person {
+        height = '180' //公有属性
+        #age = 20 //私有属性，只能在类的内部访问
+        constructor(name) {
+            this.name = name
+        }
+
+        //ES6中的类
+        fn() {
+            console.log('fn')
+        }
+    }
+
+    let man = new Person('zhang')
+    console.log(man)
+    man.fn()
+
+
+    //    单例模式
+    let instance;
+
+    class oneObj {
+        constructor(name) {
+            if (!instance) {
+                //如果没有实例，那么就让instance等于这个类
+                instance = this
+                this.name = name
+            } else {
+                return instance
+            }
+        }
+    }
+
+    let q = new oneObj('qqqq')
+    let w = new oneObj('wwww')
+    console.log(q, w)
+    console.log(q === w)
+
+
+    class twoObj {
+        static twoObj_instance
+
+        constructor(name) {
+            if (!twoObj.twoObj_instance) {
+                //如果没有实例，那么就让instance等于这个类
+                twoObj.twoObj_instance = this
+                this.name = name
+            } else {
+                return twoObj.twoObj_instance
+            }
+        }
+    }
+
+    let a = new twoObj('aa')
+    let b = new twoObj('bb')
+    console.log(a, b)
+    console.log(a === b)
+
+
+    class threeObj {
+        #age = 20;
+
+        constructor() {
+            console.log('threeObj')
+        }
+
+        get age() {
+            return this.#age
+        }
+
+        set age(age) {
+            this.#age = age
+        }
+    }
+
+    let mhp = new threeObj()
+    console.log(mhp)
+    mhp.age = 12
+    console.log(mhp.age)
+
+    class fourObj {
+        constructor(name) {
+            this.name = name
+        }
+
+        fn() {
+            console.log('fourObj', this.name)
+        }
+    }
+
+    class fourObjEx extends fourObj {
+        constructor(name) {
+            super(name);
+        }
+
+        fn() {
+            super.fn()
+            console.log('fourObjEx', this.name)
+        }
+    }
+
+    let ll = new fourObjEx('ll11')
+    ll.fn()
+
+    class AbstractPerson {
+        constructor() {
+            //不允许通过AbstractPerson去实例化
+            if (new.target === AbstractPerson) {
+                throw new Error("AbstractPerson 不能被实例化")
+            }
+            console.log("hi")
+        }
+    }
+    class newPerson extends AbstractPerson{
+
+    }
+    let zhangSi = new newPerson();
+    //会抛出异常
+    // let zhangSan = new AbstractPerson();
+
+    class myPromise{
+        then(){
+            console.log('thenRun')
+            return this;
+        }
+    }
+    let testPromise = new myPromise();
+    testPromise.then().then().then().then()
+
+    class newObj{
+        constructor() {
+        }
+    }
+
+    console.dir(newObj)
+
+    Array.prototype.printLog=function (){
+        console.log('printLog')
+    }
+    let arr = [1,2,3]
+    arr.printLog()
+
+
+
+</script>
+</html>
