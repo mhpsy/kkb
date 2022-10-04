@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    <!--    工厂模式-->
+    function Person(name, age, hobby) {
+        let obj = {};
+        obj.name = name
+        obj.age = age
+        obj.hobby = function (hobby) {
+            console.log(hobby)
+        }
+        return obj;
+    }
+
+    let zh = Person('zh', 20, '篮球')
+    console.log(zh)
+
+    //构造函数
+    function PersonCon(name, hobby) {
+        this.name = name;
+        this.hobby = function (hobby) {
+            console.log(hobby)
+        }
+    }
+
+    let zha = new PersonCon('zha')
+    console.log(zha)
+
+    //原型
+    function Per(name) {
+        this.name = name;
+        this.hobby = function (hobby) {
+            console.log('hobby')
+        }
+    }
+
+    let zhang = new Per('zhang')
+    let li = new Per('li')
+    console.log(zhang.hobby === li.hobby)
+    //false
+
+    //原型
+    function Per2(name) {
+        this.name = name;
+    }
+
+    Per2.prototype.hobby = function () {
+        console.log('hobby')
+    }
+    let zhang1 = new Per2('zhang')
+    let li1 = new Per2('li')
+    console.log(zhang1.hobby === li1.hobby)
+    //true
+    console.log(zhang1.__proto__ === Per2.prototype)
+    //true
+
+    //这是一个原型的固有属性
+    console.log(Per2.prototype.constructor === Per2)
+    //true
+    console.log(zhang1.constructor === Per2)
+    //true
+    console.log(zhang1.constructor === Per2.prototype.constructor)
+
+    //true
+
+    function fn200(name, age) {
+        console.log(this, 'name is ' + name + ',age is ' + age)
+    }
+
+    fn200.call({
+        username: 'mhp',
+        liveYear: 20,
+    }, 'mhpP', 22)
+    //    { username: "mhp", liveYear: 20 }name is mhpP,age is 22
+
+    fn200.apply({
+        username: 'mhpPP',
+        liveYear: 21,
+    }, ['mhpPP', 22])
+    //    { username: "mhpPP", liveYear: 21 }name is mhpPP,age is 22
+
+    fn200.bind({
+        username: 'mhpBind',
+        liveYear: 29,
+    })('mhpPP', 22)
+    //{ username: "mhpBind", liveYear: 29 }name is mhpPP,age is 22
+</script>
+</html>
