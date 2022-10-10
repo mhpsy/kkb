@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let zhang = {
+        name: 'zhang',
+        age: 20,
+        friends: ['xxx', 'qq', 'aa'],
+        home: undefined,
+        work: {
+            weekday: ['eat', 'run'],
+            workday: ['work', 'sleep'],
+        }
+    }
+
+    //深拷贝
+    //序列化进行深拷贝
+    let zhang1 = JSON.parse(JSON.stringify(zhang))
+    console.log(zhang)
+    console.log(zhang1)
+    //    深拷贝函数进行深拷贝
+    function deepCopy(obj) {
+        //如果是数组的话就创建一个数组对象，如果是对象就创建对象
+        let newObj = Array.isArray(obj) ? [] : {};
+        //使用for in进行循环的时候不仅仅是循环对象上的方法，连原型上面的方法也会循环
+        for (let key in obj) {
+            //如果是对象自身自己的属性才会进行深拷贝
+            if (obj.hasOwnProperty(key)) {
+                //如果是一个对象，那么就需要进行深拷贝，也就是递归
+                if (typeof obj[key] === "Object") {
+                    newObj[key] = deepCopy(obj[key])
+                } else {
+                    //如果不是一个对象那么就会直接赋值
+                    newObj[key] = obj[key]
+                }
+            } 
+        }  
+        return newObj
+    }
+
+    let zhang2 = deepCopy(zhang)
+    console.log(zhang2)
+
+
+    //组合继承
+    //跳过了 没明白是干什么用的 面向马戏团编程
+
+
+
+
+
+
+</script>
+</html>
