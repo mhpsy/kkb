@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [title] {
+            /*给所有拥有title属性的元素*/
+            color: red;
+        }
+        [title=divOne] {
+            /*title属性=divOne*/
+            background-color: black;
+        }
+        [title$='2']{
+            /*title属性以2结尾的元素*/
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+<div title="divOne">divdiv</div>
+<div title="divTwo">divdiv</div>
+<p title="p">pp</p>
+<h2 title="h2">pp</h2>
+<h2>pp</h2>
+<h2>pp</h2>
+</body>
+</html>
