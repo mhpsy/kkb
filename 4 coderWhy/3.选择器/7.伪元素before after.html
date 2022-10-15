@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box::before {
+            content: 'test before';
+            color: red;
+            font-size: 30px;
+        }
+
+        .box::after {
+            /*使用这个伪元素的过程中 content不能省略*/
+            /*如果省略不会出来内容的*/
+            content: '';
+
+            /*显示一个红色的块*/
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #ff0000;
+        }
+
+        .box1::after{
+            /*这里也是可以插入svg*/
+            content:url("./svg/arrow-down-circle.svg");
+            /*弄一个合适的位置*/
+            position: relative;
+            left: 2px;
+            top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="box">我是box元素</div>
+
+<div class="box1">我是box元素</div>
+
+</body>
+</html>

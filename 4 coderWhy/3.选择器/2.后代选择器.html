@@ -3,18 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+        .home span {
+            /*home的全部后代里面的span*/
+            color: red;
+        }
+        .home>span{
+            /*直接子代选择器，只会选择到直接子代*/
+            font-size: 30px;
+        }
+
+    </style>
+
 </head>
 <body>
 <div class="home">
-  <div class="box">
-    <span>home.box</span>
-  </div>
+    <span>home > span</span>
+    <div class="box">
+        <span>home.box</span>
+    </div>
 
-  <div>
-
-  </div>
+    <div>
+        <span>home->div>span</span>
+    </div>
 
 </div>
+<div>
+    <span>no home</span>
+</div>
+
 
 </body>
 </html>
