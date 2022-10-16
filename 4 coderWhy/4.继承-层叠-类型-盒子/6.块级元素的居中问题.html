@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>啊啊</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        /*
+        text-align只对inline-level box的元素起效果
+        有 行内非替换元素span/a
+        和 行内替换元素img/input
+        */
+            text-align: center;
+        /*在简单点说就是text-align: center 这个属性可以让 inline-block 的元素居中*/
+        }
+
+        .box {
+            background-color: #ff0000;
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
