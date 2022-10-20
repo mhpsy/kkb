@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            overflow: hidden;
+
+        }
+
+        /*.box img{*/
+        /*    position: relative;*/
+        /*    !**/
+        /*    原理很有趣的就是让图片先向左边移动自身的一半,*/
+        /*    接下啦在向右边移动包含自己块的一半,*/
+        /*    margin-left: 50%;里面的50%就是包含自己元素的一半*/
+        /*    *!*/
+        /*    left: -500px;*/
+        /*    margin-left: 50%;*/
+        /*}*/
+        .box img {
+            transform: translate(-50%);
+            margin-left: 50%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="../img/sta-je-css.png">
+</div>
+</body>
+</html>
