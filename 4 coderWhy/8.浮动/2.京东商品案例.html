@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>京东案例</title>
+    <style>
+        .context {
+            width: 1190px;
+            margin: 0 auto;
+            background-color: orange;
+        }
+
+        .item {
+            width: 230px;
+            height: 322px;
+            background-color: cadetblue;
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        /*选中最后一个*/
+        /*.item:last-child{*/
+        /*    margin-right: 0;*/
+        /*}*/
+
+        /*兼容性问题*/
+        /*.item:nth-child(5n){*/
+        /*    margin-right: 0;*/
+        /*}*/
+        .box {
+            margin-right: -10px
+        }
+
+
+        .clear-fix::after{
+            content: "";
+            clear: both;
+            display: block;
+
+            visibility: hidden;
+            height: 0;
+        }
+        .clear-fix{
+            *zoom: 1;
+        }
+
+    </style>
+</head>
+<body>
+<div class="context clear-fix">
+    <!--
+    这一层box的作用确实精妙
+    公式是 父级的width=box本身的width+ml+mr
+    也就是 box本身的width+ml+mr
+    现在mr变成了-10.网易云项目，也就是x+0-10.网易云项目=1190
+    所以box的宽度变成了1200
+    现在的状况是context完全居中
+    但是box不是完全居中，向右边突出了10px
+    box=1200
+    context=1190
+
+    另外一个思路就是box设置margin:0 -5px
+    然后item设置margin:0 5px也是一样的道理，也就是box左右各自出去5px
+    但是不如现在的办法 也就是box设置margin-right: -10px
+    -->
+    <div class="box">
+        <div class="item item1">1</div>
+        <div class="item item2">2</div>
+        <div class="item item3">3</div>
+        <div class="item item4">4</div>
+        <div class="item item5">5</div>
+        <div class="item item1">1</div>
+        <div class="item item2">2</div>
+        <div class="item item3">3</div>
+        <div class="item item4">4</div>
+        <div class="item item5">5</div>
+    </div>
+
+</div>
+
+</body>
+</html>

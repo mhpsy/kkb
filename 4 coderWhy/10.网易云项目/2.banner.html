@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <style>
+        .banner {
+            height: 285px;
+            background: url("./img/weiYi-fuzzy.png") center center /6000px;
+        }
+
+        .banner .area {
+            position: relative;
+            height: 285px;
+            background-color: orange;
+        }
+
+        .banner .area-left {
+            width: 730px;
+            position: relative;
+        }
+
+        .banner .area-left .img-list {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .banner .area-left .img-list li {
+            flex-shrink: 0;
+            width: 100%;
+        }
+
+        .banner .area-left .img-list .item {
+            display: block;
+        }
+
+        .banner .area-left .img-list .item img {
+            width: 100%;
+        }
+
+        /*    点的列表*/
+        .banner .area-left .dotsList {
+            position: absolute;
+            display: flex;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            /*这样就设置它居中了，margin:0 auto不能居中的因为没有长度*/
+            justify-content: center;
+        }
+
+        .banner .area-left .dotsList li {
+            margin: 0 5px;
+        }
+
+        .banner .area-left .dotsList .item {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: url("./img/dot&switch.png") 3px -343px;
+        }
+
+        .banner .area-left .dotsList .item.active,
+        .banner .area-left .dotsList .item:hover {
+            background-position: -16px -343px;
+        }
+
+        .banner .area-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -1px;
+            width: 254px;
+            background: url("./img/download.png");
+            /*height: 285px;*/
+        }
+
+        .banner .area-right .download {
+            display: block;
+            width: 215px;
+            height: 56px;
+            margin: 186px 0 0 19px;
+            text-indent: -9999px;
+        }
+
+        .banner .area-right .download:hover {
+            background: url("./img/download.png") 0 -290px;
+        }
+
+        .banner .area-right p {
+            font-size: 12px;
+            margin: 10px auto;
+            text-align: center;
+            color: #8d8d8d;
+        }
+
+        /*    轮播图的箭头*/
+        .banner .area .control{
+            position: absolute;
+            width: 37px;
+            height: 63px;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            background: url("./img/dot&switch.png");
+        }
+
+        .banner .area .control.control-left{
+            left: -70px;
+            background-position: 0 -360px;
+        }
+
+        .banner .area .control.control-right{
+            right: -70px;
+            background-position: 0 -508px;
+        }
+
+        .banner .area .control.control-left:hover{
+            background-position: 0 -430px;
+        }
+
+        .banner .area .control.control-right:hover{
+            background-position: 0 -578px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="banner">
+    <div class="area wrapper_03">
+        <div class="area-left">
+            <ul class="img-list">
+                <li>
+                    <a class="item" href="#">
+                        <img src="./img/weiYi.png" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a class="item" href="#">
+                        <img src="./img/weiYi.png" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a class="item" href="#">
+                        <img src="./img/weiYi.png" alt="">
+                    </a>
+                </li>
+            </ul>
+            <div>
+                <ul class="dotsList">
+                    <li><a class="item" href="#"></a></li>
+                    <li><a class="item" href="#"></a></li>
+                    <li><a class="item active" href="#"></a></li>
+                    <li><a class="item" href="#"></a></li>
+                    <li><a class="item" href="#"></a></li>
+                    <li><a class="item" href="#"></a></li>
+                    <li><a class="item" href="#"></a></li>
+                    <li><a class="item" href="#"></a></li>
+                    <li><a class="item" href="#"></a></li>
+                    <li><a class="item" href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="area-right">
+            <a class="download" href="#">下载客户端</a>
+            <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
+        </div>
+        <a href="#" class="control control-left"></a>
+        <a href="#" class="control control-right"></a>
+
+    </div>
+</div>
+
+</body>
+</html>
