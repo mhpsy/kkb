@@ -20,6 +20,37 @@
     background: url("../img/logo.png") -190px 0;
 }
 
-img{
+img {
     vertical-align: top;
+}
+
+.btn_sprite {
+    display: inline-block;
+    background: url(../img/button.png) no-repeat;
+}
+
+.btn_type_01_sup {
+    background-position: right -100px;
+    padding-right: 5px;
+    height: 31px;
+    line-height: 31px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+/*这样就可以只设置父类了*/
+.btn_type_01_sup > i {
+    display: block;
+    background-image: url(../img/button.png);
+    background-position: 0 -59px;
+    padding-left: 3px;
+    height: 31px;
+}
+
+.btn_type_01_sub {
+    display: block;
+    background-position: 0 -59px;
+    padding-left: 3px;
+    height: 31px;
 }
