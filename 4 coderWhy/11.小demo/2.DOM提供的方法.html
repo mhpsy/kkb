@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="title"></div>
+<div id="title2"></div>
+
+</body>
+<script>
+    let title = document.getElementById('title');
+    title.appendChild(document.createTextNode('hello'))
+
+    //只是多了一个p标签
+    let title2 = document.getElementById('title2');
+    let pEle = document.createElement('p');
+    title2.appendChild(pEle)
+    pEle.appendChild(document.createTextNode('hello world'))
+
+</script>
+</html>

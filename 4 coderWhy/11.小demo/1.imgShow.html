@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>imgShow</title>
+</head>
+<body>
+<h1>展示图片</h1>
+<ul id="imageGallery">
+    <li>
+        <a href="../img/sta-je-css.png"
+           title="这是一张css的照片"
+        >
+            css
+        </a>
+    </li>
+    <li>
+        <a href="../img/unnamed.png"
+           title="这是一张html的照片"
+        >
+            html
+        </a>
+    </li>
+</ul>
+
+
+<img class="showImg" src="">
+<div id="des">照片详情</div>
+
+</body>
+<script>
+    function setImg(a) {
+        let showImg = document.getElementsByClassName("showImg");
+        showImg[0].src = a.getAttribute('href');
+        document.getElementById('des').firstChild.nodeValue = a.getAttribute('title')
+    }
+
+    function prepareGallery() {
+        let imagesUl = document.getElementById('imageGallery');
+        let links = imagesUl.getElementsByTagName("a");
+        for (let i = 0; i < links.length; i++) {
+            links[i].onclick = function () {
+                setImg(this)
+                //终止onclick跳转
+                return false
+            }
+            //    因为有些人不能用鼠标只用键盘的tab切换来，所以要添加一个键盘方法
+            // links[i].onkeyup = links[i].onclick
+            //    哈哈哈，事实上不需要这样的，因为在几乎所有的刘览器里
+            //    用TAB键移动到某个链接然后按下回车键的动作也会触发onclick事件
+        }
+    }
+
+    window.onload = function () {
+        prepareGallery();
+    }
+</script>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
