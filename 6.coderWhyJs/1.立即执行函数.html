@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  const foo = (function (name) {
+    console.log('立即执行函数'+name);
+    return 'run';
+  })('jack');
+  console.log(foo);
+
+  //阴间代码
+  +function f(){
+    console.log('阴间代码')
+  }();
+
+
+
+
+</script>
+</html>

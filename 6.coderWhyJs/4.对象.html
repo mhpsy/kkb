@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  let car = {
+    color: 'red',
+    price: 10000,
+    Brand: 'BWM',
+  }
+  Object.keys(car).forEach(item => {
+    console.log(item + car[item])
+  })
+
+  console.log('------------------')
+
+  for (const carKey in car) {
+    console.log(carKey + car[carKey])
+  }
+
+  let obj1 = {}
+  let obj2 = {}
+  console.log(obj1 === obj2)//false
+
+  let obj = {
+    name: 'obj'
+  }
+
+  function rename(a) {
+    a = {name: 'jack'}
+  }
+
+  rename(obj)
+  console.log(obj)
+
+  function rename2(a) {
+    a.name='jack'
+  }
+  rename2(obj)
+  console.log(obj.name)//jack
+
+
+
+
+</script>
+</body>
+</html>

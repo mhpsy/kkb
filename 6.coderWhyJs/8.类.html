@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>类</title>
+</head>
+<body>
+
+<script>
+  let str = 'hello'
+  console.log(str.length)
+
+  console.log(Number.MAX_VALUE)//1.7976931348623157e+308
+  console.log(Number.MIN_VALUE)//5e-324
+  console.log(Number.MAX_SAFE_INTEGER)//9007199254740991
+  console.log(Number.MIN_SAFE_INTEGER)//-9007199254740991
+
+
+  let num = 100;
+  console.log(num.toString())//100
+  console.log(num.toString(2))//1100100
+  console.log(num.toString(16))//64
+  let floatNum = 3.1415926
+  console.log(floatNum.toFixed(2))//3.14
+  console.log(floatNum.toFixed(3))//3.142
+  console.log(floatNum.toFixed(5))//3.14159
+  let strNum = '3.1415'
+  console.log(Number(strNum))//3.1415
+  console.log(Number.parseInt(strNum))//3
+  console.log(Number.parseFloat(strNum))//3.1415
+  //也可以省去Number.
+  console.log(parseInt(strNum))//3
+  console.log(parseFloat(strNum))//3.1415
+
+  console.log('-----------------------')
+  let mes = 'hello world'
+  for (let me of mes) {
+    console.log(me)
+  }
+  let word = 'hello'
+  console.log(mes.indexOf(word))
+  // indexOf返回值是一个索引值,没有搜索到返回-1
+
+</script>
+</body>
+</html>

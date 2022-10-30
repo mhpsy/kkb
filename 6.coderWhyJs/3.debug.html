@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  const foo = (function (name) {
+    console.log('立即执行函数' + name);
+    return 'run';
+  })('jack');
+
+  //简单来说就是在代码中打断点
+  debugger
+  console.log(foo);
+
+  for (var i = 0; i < 10; i++) {
+    console.log(i)
+
+  }
+
+  //阴间代码
+  +function f() {
+    console.log('阴间代码')
+  }();
+
+
+</script>
+</html>
