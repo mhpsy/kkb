@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>手动实现高阶函数</title>
+</head>
+<body>
+
+<script>
+  /**
+   * 版本1
+   */
+  // let els = ['java', 'php', 'go', 'javaScript'];
+  //
+  // function lForEach(fn) {
+  //   for (let i = 0; i < els.length; i++) {
+  //     fn(els[i], i, els)
+  //   }
+  // }
+  //
+  // lForEach(function (item, index, els) {
+  //   console.log('----', item, index, els)
+  // })
+  //
+  // els.forEach(function (item,index,els){
+  //   console.log('----', item, index, els)
+  // })
+
+  /**
+   * 版本2
+   */
+  // let els = ['java', 'php', 'go', 'javaScript'];
+  //
+  // function lForEach(fn, arr) {
+  //   for (let i = 0; i < arr.length; i++) {
+  //     fn(arr[i], i, arr)
+  //   }
+  // }
+  //
+  // lForEach(function (item, index, arr) {
+  //   console.log(item, index, arr)
+  // }, els)
+  //
+  // lForEach(function (a, aa, bb) {
+  //   console.log(a, aa, bb)
+  //   console.log(`a, aa, bb`)
+  // }, ['els', 'abc', 'nba'])
+
+
+  /**
+   * 版本3
+   */
+  // let els = ['java', 'php', 'go', 'javaScript'];
+  //
+  // els.lForEach = function (fn) {
+  //   for (let i = 0; i < this.length; i++) {
+  //     fn(this[i], i, this)
+  //   }
+  // }
+  //
+  // els.lForEach(function (item, index, arr) {
+  //   console.log(item, index, arr)
+  // })
+  //
+  // els.forEach(function (item, index, arr) {
+  //   console.log(item, index, arr)
+  // })
+
+
+  /**
+   * 版本4
+   */
+  Array.prototype.lForEach = function (fn) {
+    for (let i = 0; i < this.length; i++) {
+      fn(this[i], i, this);
+    }
+  }
+  let els = ['java', 'php', 'go', 'javaScript'];
+  els.lForEach((item, i, arr) => {
+    console.log(item)
+    console.log(i)
+    console.log(arr)
+  });
+
+  // ['els', 'arr', 'array', 'arr'].lForEach((item, i, arr) => {
+  //   console.log(item)
+  //   console.log(i)
+  //   console.log(arr)
+  // })
+
+  Array.prototype.lFind = function (fn) {
+    for (let i = 0; i < this.length; i++) {
+      if (fn(this[i])) {
+        return this[i]
+      }
+    }
+    // return ''
+    //  实际上find函数找不到是返回undefined
+  }
+
+  let books = [
+    {id: 1, name: "java"},
+    {id: 2, name: "jack"},
+    {id: 3, name: "benz"},
+  ]
+
+  book = books.lFind(function (item) {
+    return item.id === 2
+  })
+  console.log(book)
+
+
+</script>
+
+</body>
+</html>
