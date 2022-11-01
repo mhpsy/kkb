@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<input type="button">
+<button class="removeEl">删除元素</button>
+<button class="cloneEl">复制元素</button>
+
+<div class="box">
+  <span>spanD</span>
+  <div>span</div>
+  <button class="addNum">计数</button>
+  <div class="number">0</div>
+</div>
+<script>
+  let boxEl = document.querySelector('.box');
+  let removeEl = document.querySelector('.removeEl');
+  let cloneEl = document.querySelector('.cloneEl');
+  let i = 0;
+  removeEl.onclick = function () {
+    boxEl.remove()
+  }
+  cloneEl.onclick = function () {
+    let node = boxEl.cloneNode(true);//如果这个参数里面有一个true就代表是深度克隆的意思
+    node.children[0].textContent = 'clone出来的元素' + i++;
+    boxEl.after(node)
+  }
+
+  let addNum = document.querySelector('.addNum')
+  let number = document.querySelector('.number');
+  addNum.onclick = function () {
+    number.textContent = i++ + ''
+  }
+</script>
+</body>
+</html>

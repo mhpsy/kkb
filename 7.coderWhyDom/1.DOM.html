@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="box"></div>
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+</ul>
+
+<script>
+
+  console.log(document.documentElement)//html对象
+  let bodyEl = document.body;
+  console.log(bodyEl)//body对象
+  console.log(document.head)//head对象
+
+  console.log(bodyEl.childNodes)
+  console.log(bodyEl.firstChild)//获取body的第一个节点
+  console.log(bodyEl.firstChild.nextSibling)//获取body的第一个节点的下一个兄弟节点
+  console.log(bodyEl.parentNode)//获得body的父亲节点
+
+
+  console.log('---------------------')
+  console.log(bodyEl.children)//body下面的全部元素
+  console.log(bodyEl.children[0])//body下面的第一个元素
+  let boxEl = bodyEl.firstElementChild;
+  console.log(bodyEl.firstElementChild)//body下面的第一个元素
+  let ulEl = boxEl.nextElementSibling;//获取boxEl的下一个元素
+  console.log(ulEl)
+  let liEl = ulEl.children;
+  console.log(liEl)
+  console.log(liEl[0])
+  for (let i = 0; i < liEl.length; i++) {
+    console.log(liEl[i])
+  }
+
+
+</script>
+
+</body>
+</html>

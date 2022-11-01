@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Date</title>
+</head>
+<body>
+
+<script>
+  let tempDate1 = new Date()
+  console.log(tempDate1)//Date Sun Oct 30 2022 22:20:24 GMT+0800 (China Standard Time)
+  let tempDate2 = Date.now()
+  console.log(tempDate2)//1667139624626
+  let tempDate3 = new Date().getTime()
+  console.log(tempDate3)//1667139624626
+  let tempDate4 = new Date().valueOf()
+  console.log(tempDate4)//1667139624626
+  console.log('-------+阴间方式+-------')
+  let tempDate5 = new Date()
+  console.log(+tempDate5)//1667139624626
+
+
+  //简单封装一个看运行时间的函数
+  function showRunTime(fn) {
+    let startTime = Date.now();
+    fn();
+    let endTime = Date.now();
+    return endTime - startTime;
+  }
+
+  console.log(showRunTime(function () {
+    for (let i = 0; i < 1000; i++) {
+      console.log(i)
+    }
+  }))
+
+</script>
+</body>
+</html>

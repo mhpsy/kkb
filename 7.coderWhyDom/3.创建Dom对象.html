@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="box"></div>
+
+<script>
+  let h2El = document.createElement('h2');
+  h2El.classList.add('active')
+  h2El.textContent='我是h2元素'
+  let boxEl = document.querySelector('.box');
+  boxEl.append(h2El)
+
+</script>
+</body>
+</html>
