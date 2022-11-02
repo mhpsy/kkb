@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function addCount(count) {
+    return function addNum(num) {
+      return num + count
+    }
+  }
+  let addNum5 = addCount(5);
+  console.log(addNum5(100))
+  console.log(addNum5(20))
+  console.log(addNum5(50))
+  let addNum10 = addCount(10);
+  console.log(addNum10(100))
+  console.log(addNum10(20))
+  console.log(addNum10(50))
+</script>
+</body>
+</html>

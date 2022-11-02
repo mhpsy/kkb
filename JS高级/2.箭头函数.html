@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  let nums = [10, 20, 30, 40, 55, 66, 77, 88];
+  let numsS = nums.filter(item => item % 2 === 0).map(item => item ** 2).reduce((preV, v) => preV + v);
+  console.log(numsS)
+</script>
+
+</body>
+</html>

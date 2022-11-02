@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function foo() {
+    console.log('foo', this)
+  }
+
+  let obj = {name: 'java', age: 22}
+  let fooB = foo.bind(obj);
+  fooB()
+
+
+
+  // foo.call(obj);
+  // foo.call(123);
+  // foo.call('go');
+  // foo.call(undefined);
+
+
+
+</script>
+
+</body>
+</html>

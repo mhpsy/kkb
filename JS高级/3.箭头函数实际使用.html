@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>=></title>
+</head>
+<body>
+<script>
+  //模拟网络请求
+  function request(url, callBackFn) {
+    //模拟请求结果
+    let result = ['jack', 'java', 'php']
+    callBackFn(result)
+  }
+
+  //操作的对象
+  let obj = {
+    name: 'jack',
+    list: [],
+    // network: function () {
+    //因为调用network的是obj对象所以this指向的就是obj
+    //   let _this = this
+    //   request('/getNameList', function (res) {
+    //     //将回调函数返回的res给到对象的list里面
+    //     _this.list = res
+    //   })
+    // }
+    /** 改用箭头函数 **/
+    network: function () {
+      //因为箭头函数没有this指向,所以会向上层寻找this,也就是obj调用的network方法
+      //里面的this指向就是obj
+      request('/getName', res => {
+        this.list = res
+      })
+    }
+  }
+  obj.network()
+  console.log(obj)
+
+</script>
+</body>
+</html>
