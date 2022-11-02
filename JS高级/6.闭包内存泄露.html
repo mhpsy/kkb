@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>闭包内存泄露</title>
+</head>
+<body>
+<button class="createArr">添加</button>
+<button class="delArr">删除</button>
+
+<script>
+  function createArr() {
+    let arr = new Array(1024 * 1024).fill(0)
+    return function test() {
+      console.log(arr.length)
+    }
+  }
+
+  let funArr = []
+  let createArrEl = document.querySelector('.createArr');
+  createArrEl.addEventListener('click', () => {
+    for (let i = 0; i < 100; i++) {
+      funArr.push(createArr());
+    }
+  })
+  let delArrEl = document.querySelector('.delArr')
+  delArrEl.addEventListener('click', () => {
+    funArr = []
+  })
+
+
+</script>
+</body>
+</html>
