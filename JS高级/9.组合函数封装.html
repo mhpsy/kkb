@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组合函数</title>
+</head>
+<body>
+<script>
+  function double(x) {
+    return x * 2
+  }
+
+  function pow(x) {
+    return x ** 2
+  }
+
+  function combination(...fns) {
+    if (fns.length <= 0) return;
+    for (let i = 0; i < fns.length; i++) {
+      if (typeof fns[i] !== 'function') {
+        throw new Error(`index ${i} is not funcion`)
+      }
+    }
+    //上面都是一些边界判断,下面是实际逻辑
+    return function (...args) {
+      //一般第一个函数可能会接受多个参数,也就是剩下的函数都是接收一个参数返回一个参数
+      //第一个函数绑定this,apply的第二个参数正好是一个数组
+      let result = fns[0].apply(this, args);
+      for (let i = 1; i < fns.length; i++) {
+        //for form 1
+        result = fns[i].apply(this, [result])
+        //fns从下标1开始依次apply 每一个上一个的返回值
+      }
+      return result
+    }
+  }
+
+  //是的 没错console.log也可以放进去玩耍一下
+  let combinationMethod = combination(double, pow, console.log);
+  combinationMethod(20)
+  combinationMethod(40)
+  //console.log的返回值是undefined
+  let combinationMethod2 = combination(double, pow);
+  console.log(combinationMethod2(20))
+
+
+</script>
+</body>
+</html>

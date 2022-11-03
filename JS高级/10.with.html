@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>with</title>
+</head>
+<body>
+<script>
+  let obj = {
+    name: 'obj',
+    age: 22
+  };
+
+  with (obj) {
+    console.log(name);
+    console.log(age);
+  };
+</script>
+</body>
+</html>

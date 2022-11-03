@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>defineProperly</title>
+</head>
+<body>
+<script>
+  let obj = {
+    name: 'xx',
+    age: 18,
+    height: 1.88
+  }
+  // Object.defineProperty(obj,'name',{
+  //   configurable:false,
+  //   //Configurable:表示属性是否可以通过 delete 删除属性，
+  //   // 是否可以修改它的特性，或者是否可以将它修改为存取属性描述符；
+  //   enumerable:false,
+  //   //Enumerable:表示属性是否可以通过 for in 或者 Object.keys 返回该属性；
+  //   writable:false,
+  //   //Writable:表示是否可以修改属性的值
+  //   value:'xx',
+  //   //读取属性的时候会返回这个值,修改属性的时候也是修改这个,
+  //   // 默认情况下是undefined
+  // })
+  let _name = null;
+  Object.defineProperty(obj, 'name', {
+    configurable: false,
+    enumerable: false,
+    set: function (value) {
+      _name = value;
+    },
+    get: function () {
+      return _name;
+    }
+  })
+  obj.name = 'jack'
+  console.log(obj.name)
+
+
+  let _age = null;
+  Object.defineProperties(obj, {
+    name: {
+      configurable: false,
+      enumerable: false,
+    },
+    age: {
+      configurable: true,
+      enumerable: true,
+      set: function (value) {
+        _age = value
+      },
+      get: function () {
+        return _age
+      }
+    }
+  })
+</script>
+</body>
+</html>

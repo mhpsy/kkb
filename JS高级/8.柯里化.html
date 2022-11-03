@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>柯里化</title>
+</head>
+<body>
+<script>
+  function foo(x, y, z) {
+    return x + y + z;
+  }
+
+  function f(x) {
+    return function (y) {
+      return function (z) {
+        return x + y + z;
+      }
+    }
+  }
+
+  let num = f(10)(20)(30)
+  console.log(num)
+
+  const ff = x => y => z => {
+    return x + y + z
+  }
+
+  num = ff(10)(20)(30)
+  console.log(num)
+
+</script>
+</body>
+</html>
