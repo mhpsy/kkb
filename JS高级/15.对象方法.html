@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>对象方法</title>
+</head>
+<body>
+<script>
+
+  let info = {
+    name: 'info',
+    age: 22,
+    desc: 'xxx',
+  }
+  info.phone = '13131313131'
+  console.log(info.hasOwnProperty('name'))//true
+
+  console.log('age' in info)//true
+
+  // for (let key of info) {
+  //   console.log(key)
+  // }
+
+  class person {}
+  let p = new person();
+  console.log(typeof p)//object
+  console.log(typeof person)//function
+
+</script>
+</body>
+</html>

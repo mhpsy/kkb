@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>解构</title>
+</head>
+<body>
+<script>
+  let names = ['java', 'php', 'go', 'javascript'];
+  let [aa, bb, ...cc] = names;
+  console.log(aa,bb,cc)
+
+
+  let [name1, name2, name3] = names
+  console.log(name1)
+  console.log(name2)
+  console.log(name3)
+
+
+  let obj = {
+    name: 'jack',
+    info: 'like code'
+  }
+  let {name, info} = obj;
+  console.log(name)
+  console.log(info)
+</script>
+</body>
+</html>

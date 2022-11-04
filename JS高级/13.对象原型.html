@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>对象原型</title>
+</head>
+<body>
+<script>
+  let obj = {
+    name: "xx"
+  }
+
+  console.log(obj.__proto__)//这个__proto__属性不是标准的是一个浏览器自己实现的属性
+  console.log(Object.getPrototypeOf(obj))//标准的方法
+  console.log(Object.getPrototypeOf(obj) === obj.__proto__)//true
+
+
+  let o = {}
+  let f = function () {
+  }
+  console.log(f.__proto__)//隐式原型
+  console.log(o.__proto__)//隐式原型
+  console.log(f.prototype)//把函数看作一个函数的时候他是有prototype属性的(显式原型)
+  console.log(o.prototype)
+
+
+  let ff = function () {}
+  let ff1 = new ff();
+  let ff2 = new ff();
+  console.log(ff1.__proto__ === ff2.__proto__)//true
+  console.log(ff1.__proto__ === ff.prototype)//true
+
+</script>
+</body>
+</html>
