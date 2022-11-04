@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  function f(name, age) {
+    console.log(this, name, age)
+  }
+
+  let f1 = f.bind({address: 'china', info: 'like code'}, 'xx', 22);
+  f1()//Object { address: "china", info: "like code" } xx 22 也就是bind会返回一个函数
+
+  Function.prototype.Lbind = function (thisArg, ...args) {
+    // thisArg.fn = this
+    Object.defineProperty(thisArg, 'fn', {
+      configurable: true,
+      enumerable: true,
+      writable: false,
+      value: this
+    })
+    //也就是返回一个函数,这个函数里面调用绑定了this,和传入了参数的函数
+    return (...newArgs) => {
+      // let arg = args.concat(newArgs)
+      let arg = [...args, ...newArgs];
+      //但是原生的bind是可以分成两个传参的,就是调用返回的函数的时候还可以传入剩余的参数
+      //将两次函数拼接一下 然后传入
+      thisArg.fn(...arg);
+    }
+  }
+  let f2 = f.Lbind({address: 'china', info: 'like code'}, 'xx', 22);
+  console.log(f2)
+  f2();
+
+
+</script>
+
+</body>
+</html>

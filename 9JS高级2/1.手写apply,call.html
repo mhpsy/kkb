@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //先用一些apply回顾一下
+  //也就是apply第一个参数传入要被用的this,第二个参数是一个数组,也就是实际使用的数组
+  function foo(name, age) {
+    console.log(this, name, age)
+  }
+
+  let obj = {
+    name: 'obj',
+    age: 12
+  }
+  foo.apply(obj, ['name', 22])
+
+
+  function f(name, info) {
+    console.log(this, name, info)
+  }
+
+  Function.prototype.Lapply = function (thisArg, arr) {
+    //obj就是this
+    //arr就是数组
+    //谁调用this是谁,所以这里原本的this就是调用这个方法的对象,然后数组就是参数
+    // thisArg.fn = this;//也就是把调用Lapply的方法绑定到fn上面了但是这样直接指向一个this有问题就是可以被看到
+    thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+    Object.defineProperty(thisArg, 'fn', {
+      configurable: true,
+      value: this
+    })
+    thisArg.fn(...arr)
+    delete thisArg.fn//调用之后在删掉
+  }
+  let o = {
+    name: 'obj',
+    age: 12
+  }
+  f.Lapply(o, ['jack', 22])
+
+
+  Function.prototype.Lcall = function (thisArg, ...arr) {
+    //obj就是this
+    //arr就是数组
+    //谁调用this是谁,所以这里原本的this就是调用这个方法的对象,然后数组就是参数
+    // thisArg.fn = this;//也就是把调用Lapply的方法绑定到fn上面了但是这样直接指向一个this有问题就是可以被看到
+    thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+    Object.defineProperty(thisArg, 'fn', {
+      configurable: true,
+      value: this
+    })
+    thisArg.fn(...arr)
+    delete thisArg.fn//调用之后在删掉
+  }
+
+
+</script>
+</body>
+</html>
