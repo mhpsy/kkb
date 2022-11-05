@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  const obj = {
+    name: 'xx',
+    age: 18,
+    address: 'china',
+  }
+
+  Object.keys(obj).forEach(key => {
+    let value = obj[key]
+    Object.defineProperty(obj, key, {
+      get() {
+        console.log(`${key}的get被调用了`)
+        return value
+      },
+      set(v) {
+        console.log(`${key}的set被调用了`)
+        value = v
+      }
+    })
+  })
+
+  console.log(obj.name, obj.age, obj.address)
+  obj.name = 'xxx'
+  obj.age = 22
+  obj.address = 'US'
+  console.log(obj.name, obj.age, obj.address)
+
+
+</script>
+</body>
+</html>

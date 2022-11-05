@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  let minute = '18'.padStart(2, '0');
+  let second = '5'.padStart(2, '0');
+  console.log(`${minute}:${second}`)//18:05
+
+  let phone = '13731373137';
+  let phoneLastFour = phone.slice(-4);
+  let finalPhone = phoneLastFour.padStart(phone.length, '*');
+  console.log(finalPhone)//*******3137
+
+  //尾部逗号
+  function f(a, b,) {
+    console.log(a, b)
+  }
+
+  f(1, 2,)
+
+
+  const flatMapArr = ['hello world', 'java php go c++', 'iphone HW XM HTC'];
+  let flatMapArrF = flatMapArr.flatMap(item => item.split(" "))
+  console.log('flatMapArrF', flatMapArrF)
+  //[ "hello", "world", "java", "php", "go", "c++", "iphone", "HW", "XM", "HTC" ]
+
+  const map = flatMapArr.map(item => item.split(' '));
+  //这个时候其实就是一个按照空格分开的二维数组了
+  console.log(map)//[["hello","world"],["java","php","go","c++"],["iphone","HW","XM","HTC"]]
+  const mapFlat = map.flat(1);
+  console.log(mapFlat)// [ "hello", "world", "java", "php", "go", "c++", "iphone", "HW", "XM", "HTC" ]
+
+
+</script>
+
+</body>
+</html>
