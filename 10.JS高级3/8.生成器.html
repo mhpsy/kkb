@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  function* foo() {
+    console.log(111)
+    yield 'aa'
+    console.log(222)
+    console.log(333)
+    yield 'bb'
+    console.log(444)
+  }
+
+  const f = foo()
+  f.next()//111
+  f.next()//222 333
+  f.next()//444
+  const ff = foo()
+  console.log(ff.next())//Object { value: "aa", done: false }
+  console.log(ff.next())//Object { value: "bb", done: false }
+  console.log(ff.next())//Object { value: undefined, done: true }
+
+
+</script>
+</body>
+</html>

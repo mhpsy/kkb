@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1.异步处理(传统处理和异步处理)</title>
+</head>
+<body>
+<script>
+  function requestData(url) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log(url)
+        resolve(url)
+      }, 1000)
+    })
+  }
+
+  requestData('x').then(res1 => {
+    requestData(res1 + ' xx').then(res2 => {
+      requestData(res2 + ' xxx').then(res3 => {
+        console.log(res3)
+      })
+    })
+  })
+  // x
+  // x xx
+  // x xx xxx
+  // x xx xxx
+
+  requestData(' x').then(res1 => {
+    return requestData(res1 + ' xx')
+  }).then(res2 => {
+    return requestData(res2 + ' xxx')
+  }).then(res3 => {
+    console.log(res3)
+  })
+  //  x
+  //  x xx
+  //  x xx xxx
+  //  x xx xxx
+
+  //上面就是传统的回调方式,真的很难用,复杂的时候绝对算是回调地狱了
+
+  //冲突了,这里开个计时器
+  setTimeout(() => {
+    function* getData() {
+      const res1 = yield requestData('x')
+      const res2 = yield requestData(res1 + ' xx')
+      const res3 = yield requestData(res2 + ' xxx')
+      console.log(res3)
+    }
+
+    const generator = getData();
+    // next返回来的是一个包含Promise对象的对象,所以要.value在.then
+    generator.next().value.then(res1 => {
+      generator.next(res1).value.then(res2 => {
+        generator.next(res2).value.then(res3 => {
+          console.log(res3)
+        })
+      })
+    })
+    // x
+    // x xx
+    // x xx xxx
+    // x xx xxx
+  }, 5000)
+
+  //顶级实现
+  setTimeout(() => {
+    async function getData2() {
+      const res1 = await requestData('x')
+      const res2 = await requestData(res1 + ' xx')
+      const res3 = await requestData(res2 + ' xxx')
+      console.log(res3)
+    }
+
+    // x
+    // x xx
+    // x xx xxx
+    // x xx xxx
+    getData2()
+  }, 10000)
+
+
+</script>
+
+</body>
+</html>

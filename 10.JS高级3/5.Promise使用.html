@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>promise</title>
+</head>
+<body>
+<script>
+  function execCode(count) {
+    return new Promise(((resolve, reject) => {
+      setTimeout(() => {
+        if (count > 0) {
+          let total = 0;
+          for (let i = 0; i < count; i++) {
+            total += i;
+          }
+          resolve(total)
+        } else {
+          reject(`传入的count ${count}有问题`)
+        }
+      },1000)
+    }))
+  }
+  execCode(100).then(res=>{
+    console.log(res)
+  }).catch(res=>{
+    console.log(res)
+  })
+
+  execCode(-1).then(res=>{
+    console.log(res)
+  }).catch(res=>{
+    console.log(res)
+  })
+
+
+</script>
+</body>
+</html>

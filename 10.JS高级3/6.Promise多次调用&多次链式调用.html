@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise</title>
+</head>
+<body>
+<script>
+  const promise = new Promise((resolve, reject) => {
+    resolve('resolve')
+  })
+
+  promise.then(res => {
+    console.log(res)  //resolve
+  })
+  promise.then(res => {
+    console.log(res)  //resolve
+  })
+  promise.then(res => {
+    console.log(res)  //resolve
+  })
+
+  promise.then(res => {
+    console.log(res)
+    return 'one'
+  }).then(res => {
+    console.log(res)
+    return 'two'
+  }).then(res => {
+    console.log(res)
+  })
+  //resolve
+  //one
+  //two
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  function* foo(arg1) {
+    console.log('1', arg1)
+    const arg2 = yield 'a'
+    console.log('2', arg2)
+    const arg3 = yield 'b'
+    console.log('3', arg3)
+    const arg4 = yield 'c'
+    console.log(arg4)
+  }
+
+  const f = foo('11');
+  console.log(f.next('22'))//看下面的输出结果可以大概知道第一个next里面的参数是没用的
+  console.log(f.next('33'))
+  console.log(f.next('44'))
+  console.log(f.next('55'))
+  console.log(f.next('66'))
+  // 1 11
+  // Object { value: "a", done: false }
+  // 2 33
+  // Object { value: "b", done: false }
+  // 3 44
+  // Object { value: "c", done: false }
+  // 55
+  // Object { value: undefined, done: true }
+  // Object { value: undefined, done: true }
+
+
+</script>
+
+</body>
+</html>

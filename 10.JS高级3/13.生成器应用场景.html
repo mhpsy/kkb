@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>生成器应用场景</title>
+</head>
+<body>
+<script>
+  function* createRangeGenerator(start, end) {
+    for (let i = start; i < end; i++) {
+      yield i
+    }
+  }
+
+  const rangeGenerator = createRangeGenerator(2,8);
+  console.log(rangeGenerator.next());
+  console.log(rangeGenerator.next());
+  console.log(rangeGenerator.next());
+  console.log(rangeGenerator.next());
+  console.log(rangeGenerator.next());
+  console.log(rangeGenerator.next());
+  console.log(rangeGenerator.next());
+
+</script>
+</body>
+</html>

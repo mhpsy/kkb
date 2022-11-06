@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise</title>
+</head>
+<body>
+<script>
+  function execCode(count, callbackSuccess, callbackErr) {
+    setTimeout(() => {
+      if (count > 0) {
+        let total = 0
+        for (let i = 0; i < count; i++) {
+          total += i;
+        }
+        console.log('execCode=>setTimeout run');
+        //在代码运行结束后通知外面execCode运行结束了
+        callbackSuccess(total)
+      } else {
+        callbackErr(`execCode运行失败了 count = ${count} 值有问题`)
+      }
+    }, 3000)
+  }
+
+  execCode(100, (v) => {
+    console.log(`execCode运行结束了${v}`)
+  }, (msg) => {
+    console.log(msg)
+  })
+
+  execCode(-1, (v) => {
+    console.log(`execCode运行结束了${v}`)
+  }, (msg) => {
+    console.log(msg)
+  })
+
+</script>
+</body>
+</html>

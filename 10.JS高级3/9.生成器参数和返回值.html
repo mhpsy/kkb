@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>wer&map;</title>
+</head>
+<body>
+<script>
+
+  function* foo(arg1) {
+    console.log('1111', arg1)
+    const arg2 = yield 'a'
+    console.log('2222', arg2)
+    const arg3 = yield 'b'
+    console.log('3333', arg3)
+  }
+
+  const f = foo('arg1');
+
+  console.log(f.next("arg2"));
+  console.log(f.next("arg3"));
+  console.log(f.next());
+  console.log(f.next());
+
+  // 1111 arg1
+  // Object { value: "a", done: false }
+  // 2222 arg3
+  // Object { value: "b", done: false }
+  // 3333
+  // Object { value: undefined, done: true }
+  // Object { value: undefined, done: true }
+
+</script>
+
+</body>
+</html>

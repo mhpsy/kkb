@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  class Person {
+    constructor(name, age, lang) {
+      this.name = name
+      this.age = age
+      this.lang = lang
+    }
+
+    * [Symbol.iterator]() {
+      yield* this.lang
+    }
+  }
+
+  const person = new Person('xx',22,['java','c','javascript']);
+  for (let lang of person) {
+    console.log(lang)
+  }
+  // java
+  // c
+  // javascript
+
+</script>
+</body>
+</html>

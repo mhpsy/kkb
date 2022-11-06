@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>异步函数</title>
+</head>
+<body>
+<script>
+  function foo() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('foo resolve')
+      }, 2000)
+    })
+  }
+
+  async function f1() {
+    console.log('f1 is running')
+    const fooResult = await foo()
+    console.log('fooResult', fooResult)
+  }
+
+  f1()
+
+  function fo(msg) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(msg)
+      }, 2000)
+    })
+  }
+
+  async function f2() {
+    const res1 = await fo('x');
+    const res2 = await fo(res1 + ' xx');
+    const res3 = await fo(res2 + ' xxx');
+    console.log(res3)//x xx xxx
+  }
+
+  f2()
+
+
+</script>
+
+</body>
+</html>

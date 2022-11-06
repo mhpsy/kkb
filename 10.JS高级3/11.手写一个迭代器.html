@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  const arr = [1, 2, 3]
+
+  function createIterator(arr) {
+    let index = 0;
+    //要return一个{},这样才能.next调用
+    return {
+      next: () => {
+        if (index < arr.length) {
+          return {value: arr[index++], done: false}
+        } else {
+          //不写value的话默认就是undefined
+          return {done: true}
+        }
+      }
+    }
+  }
+
+  const iterator = createIterator(arr);
+  console.log(iterator.next());
+  console.log(iterator.next());
+  console.log(iterator.next());
+  console.log(iterator.next());
+
+</script>
+</body>
+</html>

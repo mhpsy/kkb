@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>14.生成器语法糖</title>
+</head>
+<body>
+<script>
+  function* foo(arr) {
+    yield* arr
+  }
+
+  const generator = foo([1,2,3]);
+  console.log(generator.next());
+  console.log(generator.next());
+  console.log(generator.next());
+  console.log(generator.next());
+
+</script>
+</body>
+</html>

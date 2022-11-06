@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  const arr = [1, 2, 3, 4, 5]
+  console.log(arr[Symbol.iterator])
+  console.log(arr[Symbol.iterator]())
+  //arr[Symbol.iterator]()这个函数运行才会返回来一个迭代器
+  console.log(arr[Symbol.iterator]().next())//Object { value: 1, done: false }
+  console.log(arr[Symbol.iterator]().next())//Object { value: 1, done: false }
+  console.log(arr[Symbol.iterator]().next())//Object { value: 1, done: false }
+  //因为是同一个对象所以都是第一个元素
+  const iterator = arr[Symbol.iterator]();
+  console.log(iterator.next())
+  console.log(iterator.next())
+  console.log(iterator.next())
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+
+  function* createIterator(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      yield arr[i]
+    }
+  }
+
+  const arr = [1, 2, 3]
+  const generator = createIterator(arr);
+  console.log(generator.next())
+  console.log(generator.next())
+  console.log(generator.next())
+  console.log(generator.next())
+
+</script>
+
+</body>
+</html>

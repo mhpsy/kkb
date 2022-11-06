@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  class Person {
+    constructor(name, age, address, sex) {
+      this.name = name
+      this.age = age
+      this.address = address
+      this.sex = sex
+    }
+
+    * [Symbol.iterator]() {
+      yield* Object.entries(this)
+    }
+  }
+
+  const p = new Person('xx', 12, 'US', 'male');
+  for (let personInfo of p) {
+    console.log(personInfo)
+  }
+  // Array [ "name", "xx" ]
+  // Array [ "age", 12 ]
+  // Array [ "address", "US" ]
+  // Array [ "sex", "male" ]
+
+</script>
+</body>
+</html>
