@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  (() => {
+    // let thisDay = new Date().getDate()
+    // let thisMonth = new Date().getMonth()
+    // let thisYear = new Date().getFullYear()
+    //
+    // console.log(thisMonth)
+    //
+    // //getDay就是获取礼拜几,默认0是礼拜天,1是礼拜一,所以如果是1,
+    // //那么就表示上月有一天会占这个月的一天
+    // let lastMonthGoThisMonthDay = new Date(thisYear, thisMonth, 1)
+    // console.log(lastMonthGoThisMonthDay)
+    // console.log(lastMonthGoThisMonthDay.getDay())
+    // //接下来要获取上个月的最后一天,并且倒序push进一个数组
+    // //如果这个月是11月,那么这个获取的就是10月一共有多少天
+    // let lastMonthHaveDay = new Date(thisYear, thisMonth - 1, 0)
+    // console.log(lastMonthHaveDay)
+    // console.log(lastMonthHaveDay.getDate())
+    // let result = [];
+    // //将上个月的最后几天加进去
+    // // for (let i = lastMonthHaveDay; i > lastMonthHaveDay - lastMonthGoThisMonthDay; i--) {
+    // //   result.push(i)
+    // // }
+    // console.log(result)
+    let date = new Date(2022,0,0);
+    console.log(date)
+  })()
+</script>
+</body>
+</html>
