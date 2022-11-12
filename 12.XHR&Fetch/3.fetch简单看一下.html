@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //fetch的返回值本身就是一个promise
+  //直接就是请求成功resolve失败reject
+  //使用起来真的很简单
+  fetch('http://123.207.32.32:8000/home/multidata').then(res => {
+    console.log(res)//是一个request对象
+    return res.json()
+  }).then(res => {
+    console.log(res)
+  })//也就是res.json的返回值也是一个promise
+
+
+  //所以可以直接写async的代码
+  async function run() {
+    const res = await fetch('http://123.207.32.32:8000/home/multidata')
+    const resData = await res.json()
+    console.log(resData)
+  }
+
+  run()
+
+</script>
+</body>
+</html>
