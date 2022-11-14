@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+<div id="app">
+  <h2>{{message}}</h2>
+  <prod-item></prod-item>
+  <prod-item></prod-item>
+  <prod-item></prod-item>
+</div>
+
+<template id="prod">
+  <h1>我也是一个模板</h1>
+  <div>test</div>
+  <div>test</div>
+  <hr>
+</template>
+
+<script src="../vue.js"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: 'hello',
+      }
+    }
+  })
+
+  app.component('prod-item', {
+    template: "#prod"
+    //  这里报错也是没事的，可以获取到(webstorm里面报错#prod)
+  })
+
+  app.mount("#app")
+</script>
+
+</body>
+
+</html>

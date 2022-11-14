@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+<div id="app">
+  <h2>{{message}}</h2>
+  <button @click="changInfoName">changInfo</button>
+</div>
+
+<script src="../vue.js"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: 'hello',
+        info: {name: 'xx'}
+      }
+    },
+    methods: {
+      changInfoName() {
+        console.log('changInfoName')
+        this.info.name += 'x'
+      }
+    },
+    watch: {
+      info: {
+        handler(nV,oV){
+          //默认的nV&oV都是Proxy对象
+          console.log(nV, oV)
+          //如果要获得原始对象可以使用Vue.toRaw这个方法
+          console.log(Vue.toRaw(nV), Vue.toRaw(oV))
+          //还有一个比较歪门的招数 也就是解构对象
+          console.log({...nV}, {...oV})
+        },
+        //深度监听,但是深度监听之后的nV===ov结果可以是true
+        //因为对象比较的是引用地址不是比较值,所以只是改变属性的话可以是true
+        deep:true,
+        //立即执行一次
+        immediate:true
+      }
+    }
+  })
+
+  app.mount("#app")
+</script>
+
+</body>
+
+</html>

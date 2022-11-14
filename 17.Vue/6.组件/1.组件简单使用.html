@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+<div id="app">
+
+  <product-item></product-item>
+  <product-item></product-item>
+  <product-item></product-item>
+</div>
+
+
+<script src="../vue.js"></script>
+<script>
+  const App = {}
+
+  const app = Vue.createApp(App)
+
+  const productItem={
+    template:`
+      <div style="margin: 20px;" class="product">
+        <h1>我是一个组件</h1>
+        <div>我是一个注册过的组件</div>
+      </div>
+      <hr>
+
+    `
+  }
+
+  app.component('product-item',productItem)
+
+  app.mount("#app")
+</script>
+
+</body>
+
+</html>
