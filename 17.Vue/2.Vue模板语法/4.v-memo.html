@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+<div id="app">
+  <div v-memo="[item.name]" v-for="item in people">
+    <div>{{item.name}}</div>
+    <div>{{item.age}}</div>
+  </div>
+
+  <button @click="updateDataAge()">修改年龄</button>
+  <button @click="updateDataName()">修改姓名</button>
+</div>
+
+<script src="../vue.js"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        people: [
+          {
+            name: 'xx',
+            age: 11
+          },
+          {
+            name: 'xxx',
+            age: 12
+          },
+          {
+            name: 'xxxx',
+            age: 13
+          }
+        ]
+      }
+    },
+    methods: {
+      updateDataAge() {
+        this.people[0].age++
+        this.people[1].age++
+        this.people[2].age++
+      },
+      updateDataName() {
+        this.people[0].name += 'x'
+        this.people[1].name += 'x'
+        this.people[2].name += 'x'
+      }
+    }
+  })
+
+  app.mount("#app")
+</script>
+
+</body>
+
+</html>

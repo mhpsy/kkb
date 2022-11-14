@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      .fontColor {
+          color: red;
+      }
+  </style>
+</head>
+
+
+<body>
+
+<div id="app">
+  <img v-bind:src="imgUrl">
+  <a v-bind:href="baiDu">百度一下</a>
+
+  <img :src="imgUrl">
+  <a :href="baiDu">百度一下</a>
+
+  <div :class="classes">简单绑定class</div>
+  <div :class="[{fontColor:getFontColor()}]">简单绑定class</div>
+  <button @click="changeFontColor">change fontColor</button>
+</div>
+
+<script src="../vue.js"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        imgUrl: 'https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/32ed6a7619934144882d841761b63d3c~tplv-k3u1fbpfcp-no-mark:0:0:0:0.awebp',
+        baiDu: 'http://www.baidu.com',
+        classes: ['active', 'hasNum'],
+        fontColor: false,
+      }
+    },
+    methods: {
+      getFontColor() {
+        return this.fontColor
+      },
+      changeFontColor() {
+        this.fontColor = !this.fontColor
+        console.log(this.fontColor)
+      }
+    }
+  })
+
+  app.mount("#app")
+</script>
+
+</body>
+
+</html>

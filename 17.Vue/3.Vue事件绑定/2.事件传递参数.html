@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+<div id="app">
+  <button @click='btn1Click'>btn1</button>
+  <button @click='btn2Click("xx",12)'>btn2</button>
+  <button @click='btn3Click($event,"xxx",22)'>btn3</button>
+</div>
+
+<script src="../vue.js"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: 'hello',
+      }
+    },
+    methods: {
+      btn1Click(event) {
+        console.log(event)
+      },
+      btn2Click(name, age) {
+        console.log(name, age)
+      },
+      btn3Click(e, name, age) {
+        console.log(e, name, age)
+      }
+    }
+  })
+  // click { target: button, buttons: 0, clientX: 35, clientY: 19, layerX: 35, layerY: 19 }
+  // xx 12
+  // click { target: button, buttons: 0, clientX: 104, clientY: 20, layerX: 104, layerY: 20 } xxx 22
+
+  app.mount("#app")
+</script>
+
+</body>
+
+</html>
